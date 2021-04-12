@@ -1,0 +1,13 @@
+extends layout 
+block headElement
+    title 出席状況の確認
+
+block content 
+    .container
+        .row 
+            p.col-6 部屋番号
+            p.col-6 名前
+        each val, key in attendances
+            .row
+                each val2, key2 in val
+                    p.col-6=val2

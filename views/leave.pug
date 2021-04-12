@@ -1,0 +1,22 @@
+extends layout
+
+block headElement
+    title 退出
+
+block content
+    div#displaynamefield
+    form#leaveForm(method="post" action="/liff/student/leave")
+        .mb-3
+            label(for="riskForLunch" class="form-label") 昼食のリスクレベル
+            input(type="text" class="form-control" id="riskLevelForLunch" aria-describedby="lunchHelp" name="riskForLunch" placeholder="1人、リスク1、研究室")
+            div( id="lunchHelp" class="form-text") 2人（一緒に食事をした人の名前）、リスク2、生協
+
+        .mb-3
+            label(for="riskForDinner" class="form-label") 夕食のリスクレベル
+            input(type="text" class="form-control" id="riskForDinner" aria-describedby="dinnerhHelp" name="riskForDinner" placeholder="1人、リスク1、研究室")
+            div( id="dinnerhHelp" class="form-text") 2人（一緒に食事をした人の名前）、リスク2、研究室
+        
+        button(class="btn btn-primary") Submit
+    script(src="/js/leave.js") 
+    // 暗号化パッケージのcdn
+    script(src="https://cdn.jsdelivr.net/npm/crypt@0.0.2/crypt.min.js") 

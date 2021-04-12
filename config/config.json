@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "p",
+    "database": "wadadb",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "qcgphfpftpotkz",
+    "password": "0f5ff613a9839f4dd10ced4a9aa9f1ba67ce6ec2592421471e05857c9c8f42cd",
+    "database": "d4r94ijhbm6gbq",
+    "host": "d4r94ijhbm6gbq",
+    "dialect": "postgres"
+  }
+}

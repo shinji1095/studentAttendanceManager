@@ -1,0 +1,19 @@
+extends layout
+
+block headElement
+    title 出席登録
+
+block content
+    div#displaynamefield
+    form#attendForm(method="post" action="/liff/student/attend")
+        .mb-3
+            label(for="roomID" class="form-label") 使用する部屋を入力してください
+            select.form-select.form-select-lg#roomID(aria-describedby="roomHelp" name="roomID")
+                option(value="5540") 5540
+                option(value="5531") 5531
+            div( id="roomHelp" class="form-text") 研究室なら5540、実験室なら5531
+        
+        button(class="btn btn-primary") Submit
+    script(src="/js/attend.js")
+    // 暗号化パッケージのcdn
+    script(src="https://cdn.jsdelivr.net/npm/crypt@0.0.2/crypt.min.js") 
