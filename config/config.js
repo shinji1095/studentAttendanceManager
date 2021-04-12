@@ -1,4 +1,4 @@
-{
+module.exports = {
   "development": {
     "username": "postgres",
     "password": "p",
@@ -18,6 +18,21 @@
     "password": "0f5ff613a9839f4dd10ced4a9aa9f1ba67ce6ec2592421471e05857c9c8f42cd",
     "database": "d4r94ijhbm6gbq",
     "host": "ec2-3-233-43-103.compute-1.amazonaws.com",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "dialectOptions": {
+      "useUTC": false,
+      "dateStrings": true,
+      "typeCast": function (field, next) {
+        console.log(field.type)
+        if (field.type === 'DATETIME') {
+          return field.string()
+        }
+          return next()
+        },
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }   
+    } 
   }
 }
