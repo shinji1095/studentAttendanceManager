@@ -8,8 +8,5 @@ router.get('/', function(req, res, next) {
 });
 
 router.get("/webhook/", webhookController.handleEvent);
-router.get("/test", (req, res) => {
-  res.render("attendDone")
-})
 
 module.exports = router;
