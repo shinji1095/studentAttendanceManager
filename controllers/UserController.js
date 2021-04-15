@@ -18,7 +18,6 @@ module.exports = {
             console.error("something wrong with user create");
             console.error(err)
         })
-        res.send("completeRegister")
-
+        res.render("completeRegister");
     }
 }

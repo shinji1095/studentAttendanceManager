@@ -39,6 +39,7 @@ module.exports = {
 
     follow: async (event) => {
         const userLINEID = event.source.userId;
+        console.log("-----------------source---------------------------------:", event);
         console.log("------------------userID---------------------------------: ", userLINEID);
         const hashID = createHash().update(userLINEID).digest("hex");
         console.log("------------------hashID---------------------------------: ", hashID);

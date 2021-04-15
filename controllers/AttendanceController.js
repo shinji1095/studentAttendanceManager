@@ -82,7 +82,7 @@ module.exports = {
                 
                 res.render("completeRegister");
             }else{
-                res.render("attend");
+                res.render("attendYet");
             }
         }else{
             res.render("registerYet");
