@@ -35,6 +35,7 @@ module.exports = {
             })
 
             const {count, rows} = attendance;
+            console.log("-------------attendance--------------",attendance)
             if(count == 0){
                 Attendance.create({
                     roomID,
