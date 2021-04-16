@@ -24,13 +24,8 @@ module.exports = {
             const userID = user.dataValues.id;
             const attendance = await Attendance.findAndCountAll({
                 userID,
-                [Op.and]:{
-                    createdAt:{
-                        [Op.gte]: moment().startOf("day").format()
-                    },
-                    createdAt:{
-                        [Op.lte]: moment().endOf("day").format()
-                    }
+                createdAt:{
+                    [Op.gte]: moment().startOf("day").format()
                 }
             })
 
@@ -82,13 +77,8 @@ module.exports = {
             const attendances = await Attendance.findAndCountAll({
                 where: {
                     userID,
-                    [Op.and]:{
-                        createdAt:{
-                            [Op.gte]: moment().startOf("day")
-                        },
-                        createdAt:{
-                            [Op.lte]: moment().endOf("day")
-                        }
+                    createdAt:{
+                        [Op.gte]: moment().startOf("day").format()
                     }
                 }
             });
