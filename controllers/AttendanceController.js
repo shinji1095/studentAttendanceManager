@@ -18,19 +18,22 @@ module.exports = {
             console.log(err);
         })
         console.log(user)
-        console.log("-----------------start of ", moment().startOf("day"));
-        console.log("-------------------end of ", moment().endOf("day"));
+        console.log("-----------------start of ", moment().startOf("day").format());
+        console.log("-------------------end of ", moment().endOf("day").format());
         if(user !== null){
             const userID = user.dataValues.id;
             const attendance = await Attendance.findAndCountAll({
-                userID,
-                createdAt:{
-                    [Op.gte]: moment().startOf("day").format()
+                where:{
+                    userID,
+                    createdAt:{
+                        [Op.gte]: moment().startOf("day").format()
+                    }
                 }
             })
 
             const {count, rows} = attendance;
             console.log("-------------attendance--------------",attendance)
+            rows.map(d => console.log(d.dataValues.id))
             if(count == 0){
                 Attendance.create({
                     roomID,
