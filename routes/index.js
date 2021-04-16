@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const webhookController = require("../controllers/webhookController");
-const DateController = require("../controllers/DateController");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
