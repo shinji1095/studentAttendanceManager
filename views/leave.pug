@@ -7,6 +7,35 @@ block content
     div#displaynamefield
     form#leaveForm(method="post" action="/liff/student/leave")
         .mb-3
+            label(for="leave" class="form-label") 退出時間を選択してください
+            select.form-select.form-select-lg#attend(aria-describedby="leaveHelp" name="leave")
+                option(value="now" selected) now
+                option(value="10") 10
+                option(value="11") 11
+                option(value="12") 12
+                option(value="13") 13
+                option(value="14") 14
+                option(value="15") 15
+                option(value="16") 16
+                option(value="17") 17
+                option(value="18") 18
+                option(value="19") 19
+                option(value="20") 20
+                option(value="21") 21
+                option(value="22") 22
+                option(value="23") 23
+                option(value="0") 0
+                option(value="1") 1
+                option(value="2") 2
+                option(value="3") 3
+                option(value="4") 4
+                option(value="5") 5
+                option(value="6") 6
+                option(value="7") 7
+                option(value="8") 8
+                option(value="9") 9
+            div( id="leaveHelp" class="form-text") nowなら現在の時間
+        .mb-3
             label(for="riskForLunch" class="form-label") 昼食のリスクレベル
             input(type="text" class="form-control" id="riskLevelForLunch" aria-describedby="lunchHelp" name="riskForLunch" placeholder="1人、リスク1、研究室")
             div( id="lunchHelp" class="form-text") 2人（一緒に食事をした人の名前）、リスク2、生協
