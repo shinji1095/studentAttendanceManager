@@ -18,18 +18,18 @@ module.exports = {
             console.log(err);
         })
         console.log(user)
-        console.log("-----------------start of ", moment().startOf());
-        console.log("-------------------end of ", moment().endOf());
+        console.log("-----------------start of ", moment().startOf("day"));
+        console.log("-------------------end of ", moment().endOf("day"));
         if(user !== null){
             const userID = user.dataValues.id;
             const attendance = await Attendance.findAndCountAll({
                 userID,
                 [Op.and]:{
                     createdAt:{
-                        [Op.gte]: moment().startOf()
+                        [Op.gte]: moment().startOf("day")
                     },
                     createdAt:{
-                        [Op.lte]: moment().endOf()
+                        [Op.lte]: moment().endOf("day")
                     }
                 }
             })
@@ -83,16 +83,16 @@ module.exports = {
                     userID,
                     [Op.and]:{
                         createdAt:{
-                            [Op.gte]: moment().startOf()
+                            [Op.gte]: moment().startOf("day")
                         },
                         createdAt:{
-                            [Op.lte]: moment().endOf()
+                            [Op.lte]: moment().endOf("day")
                         }
                     }
                 }
             });
-            console.log("-----------------start of ", moment().startOf());
-            console.log("-------------------end of ", moment().endOf());
+            console.log("-----------------start of ", moment().startOf("day"));
+            console.log("-------------------end of ", moment().endOf("day"));
             console.log("--------------------------------attendance----------------------------/n", attendances)
             const {count, rows} = attendances;
             if(count !== 1){
