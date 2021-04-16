@@ -2,6 +2,7 @@ const moment = require("moment");
 const Attendance = require("../models").Attendance;
 const GASController = require("./GASController");
 const User = require("../models").User;
+const {Op} = require("sequelize");
 
 module.exports = {
     attend: async (req, res, next) => {
@@ -17,9 +18,14 @@ module.exports = {
         if(user !== null){
             const userID = user.dataValues.id;
             const attendance = await Attendance.findAndCountAll({
-                where:{
-                    leave: null,
-                    userID
+                userID,
+                [Op.and]:{
+                    createdAt:{
+                        [Op.gte]: moment().startOf()
+                    },
+                    createdAt:{
+                        [Op.lte]: moment().endOf()
+                    }
                 }
             })
             
