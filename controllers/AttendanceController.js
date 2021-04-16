@@ -26,10 +26,10 @@ module.exports = {
                 userID,
                 [Op.and]:{
                     createdAt:{
-                        [Op.gte]: moment().startOf("day")
+                        [Op.gte]: moment().startOf("day").format()
                     },
                     createdAt:{
-                        [Op.lte]: moment().endOf("day")
+                        [Op.lte]: moment().endOf("day").format()
                     }
                 }
             })
