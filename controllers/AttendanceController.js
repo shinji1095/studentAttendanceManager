@@ -5,7 +5,7 @@ const User = require("../models").User;
 
 module.exports = {
     attend: async (req, res, next) => {
-        const {hashID, roomID} = req.body;
+        const {hashID, roomID, leave} = req.body;
         const user = await User.findOne({
             where: {hashID},
             attributes: ["id"]
@@ -28,7 +28,8 @@ module.exports = {
                 Attendance.create({
                     roomID,
                     arrival: now,
-                    userID
+                    userID,
+                    leave
                 });
                 res.render("attendDone");
             }else{
@@ -49,41 +50,48 @@ module.exports = {
         if(user !== null){
             const userID = user.dataValues.id;
     
-            const attendance = await Attendance.findAndCountAll({
-                order: [
-                    ["createdAt", "DESC"]
-                ],
-                where: {userID},
-                leave: null
-            });
-            if(attendance.count == 1){
-                //console.log("attendance: ", attendance);
-                const now = moment().format();
-                attendance.rows[0].leave = now;
-                attendance.rows[0].riskForLunch = riskForLunch;
-                attendance.rows[0].riskForDinner = riskForDinner;
-                attendance.rows[0].save();
-        
-                console.log("user: ", user);
-                const data = {
-                    date: moment(now).format("MM-DD"),
-                    arrival: moment(attendance.rows[0].arrival).format("HH:mm"),
-                    leave: moment(now).format("HH:mm"),
-                    academic: user.dataValues.academic,
-                    studentID: user.dataValues.studentID,
-                    userName: user.dataValues.name,
-                    roomID: attendance.rows[0].roomID,
-                    riskForLunch,
-                    riskForDinner
+            const attendances = await Attendance.findAll({
+                where: {
+                    userID,
+                    [Op.and]:{
+                        createdAt:{
+                            [Op.gte]: moment().startOf()
+                        },
+                        createdAt:{
+                            [Op.lte]: moment().endOf()
+                        }
+                    }
                 }
-                
-                // <Object> data
-                GASController.post(data);
-                
-                res.render("completeRegister");
-            }else{
-                res.render("attendYet");
+            });
+            console.log("-----------------start of ", moment().startOf());
+            console.log("-------------------end of ", moment().endOf());
+            console.log("--------------------------------attendance----------------------------/n", attendances)
+            const now = moment().format();
+            attendances.map(attendance => {
+                attendance.leave = now;
+                attendance.riskForLunch = riskForLunch;
+                attendance.riskForDinner = riskForDinner;
+                attendance.save();
+
+            })
+            
+            console.log("user: ", user);
+            const data = {
+                date: moment(now).format("MM-DD"),
+                arrival: moment(attendance.rows[0].arrival).format("HH:mm"),
+                leave: moment(now).format("HH:mm"),
+                academic: user.dataValues.academic,
+                studentID: user.dataValues.studentID,
+                userName: user.dataValues.name,
+                roomID: attendance.rows[0].roomID,
+                riskForLunch,
+                riskForDinner
             }
+            
+            // <Object> data
+            GASController.post(data);
+            
+            res.render("completeRegister");
         }else{
             res.render("registerYet");
         }
