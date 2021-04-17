@@ -111,7 +111,7 @@ module.exports = {
                 })
                 res.render("completeRegister");
             }else{
-                res.render("spreadSheetError")
+                res.render("attendYet")
             }
                         
         }else{
