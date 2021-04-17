@@ -89,7 +89,7 @@ module.exports = {
             console.log("-------------------end of ", moment().endOf("day"));
             console.log("--------------------------------attendance----------------------------/n", attendances)
             const {count, rows} = attendances;
-            if(count !== 1){
+            if(count == 1){
                 rows.map(attendance => {
                     attendance.leave = leave;
                     attendance.riskForLunch = riskForLunch;
