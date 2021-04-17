@@ -17,14 +17,17 @@ module.exports = {
     },
 
     check: (req, res, next) => {
-        var today = moment().format("YYYY-MM-DD");
+        const today = moment().startOf("day").format();
+        const now = moment().format();
         Attendance.findAll({
             where:{
                 [Op.and]:{
                     arrival: {
-                        [Op.gt]:today + " 09:00:00"
+                        [Op.gte]:today
                     },
-                    leave: null
+                    leave: {
+                        [Op.lte]: now
+                    }
                 }
             },
             include:[
