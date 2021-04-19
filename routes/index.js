@@ -8,5 +8,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.get("/webhook/", webhookController.handleEvent);
+router.get("/speech/", (req, res, next) => {
+  res.render("onsei")
+})
 
 module.exports = router;
