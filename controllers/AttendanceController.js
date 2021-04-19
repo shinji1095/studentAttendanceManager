@@ -8,8 +8,8 @@ module.exports = {
     attend: async (req, res, next) => {
         let {hashID, roomID, arrival, leave} = req.body;
         const now = moment().format();
-        (arrival == "now") ?arrival = now :arrival = moment(new Date().setHours(arrival).setMinutes(0)).format();
-        (leave == "now") ?leave = now :leave = moment(new Date().setHours(leave).setMinutes(0)).format();
+        (arrival == "now") ?arrival = now :arrival = moment(new Date().setHours(arrival).format());
+        (leave == "now") ?leave = now :leave = moment(new Date().setHours(leave).format());
 
         const user = await User.findOne({
             where: {hashID},
@@ -69,7 +69,7 @@ module.exports = {
     leave: async (req, res, next) => {
         let {hashID, riskForLunch, riskForDinner, leave} = req.body;
         const now = moment().format();
-        (leave == "now")? leave = now: leave = moment(new Date().setHours(leave).setMinutes(0).format());
+        (leave == "now")? leave = now: leave = moment(new Date().setHours(leave).format());
 
         const user = await User.findOne({
             where: {hashID},
