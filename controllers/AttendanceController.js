@@ -8,8 +8,24 @@ module.exports = {
     attend: async (req, res, next) => {
         let {hashID, roomID, arrival, leave} = req.body;
         const now = moment().format();
-        (arrival == "now") ?arrival = now :arrival = moment(new Date().setHours(arrival)).format();
-        (leave == "now")   ?leave   = now :leave   = moment(new Date().setHours(leave)).format();
+        //(arrival == "now") ?arrival = now :arrival = moment(new Date().setHours(arrival)).format();
+        if (arrival == "now"){
+            arrival = now
+        }else{
+            let date = new Date();
+            date.setHours(arrival);
+            date.setMinutes(0);
+            arrival = moment(date).format();
+        }
+        //(leave == "now")   ?leave   = now :leave   = moment(new Date().setHours(leave)).format();
+        if(leave == "now"){
+            leave = now
+        }else{
+            let date = new Date();
+            date.setHours(leave);
+            date.setMinutes(0);
+            leave = moment(date).format();
+        }
 
         const user = await User.findOne({
             where: {hashID},
@@ -69,7 +85,15 @@ module.exports = {
     leave: async (req, res, next) => {
         let {hashID, riskForLunch, riskForDinner, leave} = req.body;
         const now = moment().format();
-        (leave == "now")? leave = now: leave = moment(new Date().setHours(leave)).format();
+        //(leave == "now")? leave = now: leave = moment(new Date().setHours(leave)).format();
+        if(leave == "now"){
+            leave = now
+        }else{
+            let date = new Date();
+            date.setHours(leave);
+            date.setMinutes(0);
+            leave = date;
+        }
 
         const user = await User.findOne({
             where: {hashID},
