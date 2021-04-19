@@ -9,7 +9,7 @@ module.exports = {
         let {hashID, roomID, arrival, leave} = req.body;
         const now = moment().format();
         (arrival == "now") ?arrival = now :arrival = moment(new Date().setHours(arrival)).format();
-        (leave == "now") ?leave = now :leave = moment(new Date().setHours(leave)).format();
+        (leave == "now")   ?leave   = now :leave   = moment(new Date().setHours(leave)).format();
 
         const user = await User.findOne({
             where: {hashID},
@@ -69,7 +69,7 @@ module.exports = {
     leave: async (req, res, next) => {
         let {hashID, riskForLunch, riskForDinner, leave} = req.body;
         const now = moment().format();
-        (leave == "now")? leave = now: leave = moment(new Date().setHours(leave));
+        (leave == "now")? leave = now: leave = moment(new Date().setHours(leave)).format();
 
         const user = await User.findOne({
             where: {hashID},
