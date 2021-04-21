@@ -1,6 +1,5 @@
 const linebot = require('@line/bot-sdk');
 const createHash = require("sha256-uint8array").createHash;
-const crypto = require("crypt-js");
 const User = require("../models").User;
 var followMessageJSON = require("../messages/follow.js");
 require('dotenv').config();
@@ -37,11 +36,13 @@ module.exports = {
 
     },
 
-    follow: async (event) => {
+    follow: event => {
         const userLINEID = event.source.userId;
+        let hashID = null;
+        console.log("----------------hashID----------------------------------", hashID)
         console.log("-----------------source---------------------------------:", event);
         console.log("------------------userID---------------------------------: ", userLINEID);
-        const hashID = createHash().update(userLINEID).digest("hex");
+        hashID = createHash().update(userLINEID).digest("hex");
         console.log("------------------hashID---------------------------------: ", hashID);
         followMessageJSON.text += "?h=" + hashID;
         return client.replyMessage(event.replyToken, followMessageJSON);
