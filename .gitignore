@@ -2,3 +2,4 @@
 node_modules/
 richMenu/
 test/
+*.pem

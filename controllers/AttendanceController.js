@@ -59,14 +59,14 @@ module.exports = {
                 });
     
                 GASController.post({
-                    date: moment(now).format("MM-DD"),
-                    arrival: moment(arrival).format("HH:mm"),
-                    leave: moment(leave).format("HH:mm"),
-                    academic: user.dataValues.academic,
-                    studentID: user.dataValues.studentID,
-                    userName: user.dataValues.name,
+                    date         : moment(now).format("MM-DD"),
+                    arrival      : moment(arrival).format("HH:mm"),
+                    leave        : moment(leave).format("HH:mm"),
+                    academic     : user.dataValues.academic,
+                    studentID    : user.dataValues.studentID,
+                    userName     : user.dataValues.name,
                     roomID,
-                    riskForLunch: null,
+                    riskForLunch : null,
                     riskForDinner: null
                 });
     
@@ -122,13 +122,13 @@ module.exports = {
     
                     // <Object> data
                     GASController.post({
-                        date: moment(now).format("MM-DD"),
-                        arrival: moment(attendance.arrival).format("HH:mm"),
-                        leave: moment(leave).format("HH:mm"),
-                        academic: user.dataValues.academic,
-                        studentID: user.dataValues.studentID,
-                        userName: user.dataValues.name,
-                        roomID: attendance.roomID,
+                        date         : moment(now).format("MM-DD"),
+                        arrival      : moment(attendance.arrival).format("HH:mm"),
+                        leave        : moment(leave).format("HH:mm"),
+                        academic     : user.dataValues.academic,
+                        studentID    : user.dataValues.studentID,
+                        userName     : user.dataValues.name,
+                        roomID       : attendance.roomID,
                         riskForLunch,
                         riskForDinner
                     });
