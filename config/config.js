@@ -21,18 +21,18 @@ module.exports = {
     "dialect": "postgres",
     "dialectOptions": {
       "useUTC": false,
-      "dateStrings": true,
-      "typeCast": function (field, next) {
-        console.log(field.type)
-        if (field.type === 'DATETIME') {
-          return field.string()
-        }
-          return next()
-        },
-      "ssl": {
-        "require": true,
-        "rejectUnauthorized": false
-      }   
+      // "dateStrings": true,
+      // "typeCast": function (field, next) {
+      //   console.log(field.type)
+      //   if (field.type === 'DATETIME') {
+      //     return field.string()
+      //   }
+      //     return next()
+      //   },
+      // "ssl": {
+      //   "require": true,
+      //   "rejectUnauthorized": false
+      // }   
     } 
   }
 }
