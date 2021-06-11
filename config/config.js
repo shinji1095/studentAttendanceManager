@@ -14,10 +14,10 @@ module.exports = {
     "dialect": "mysql"
   },
   "production": {
-    "username": "qcgphfpftpotkz",
-    "password": "0f5ff613a9839f4dd10ced4a9aa9f1ba67ce6ec2592421471e05857c9c8f42cd",
-    "database": "d4r94ijhbm6gbq",
-    "host": "ec2-3-233-43-103.compute-1.amazonaws.com",
+    "username": "student",
+    "password": "p",
+    "database": "wadaken",
+    "host": "10.0.2.10",
     "dialect": "postgres",
     "dialectOptions": {
       "useUTC": false,
